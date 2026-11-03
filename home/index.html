@@ -9,25 +9,24 @@
 <link rel="canonical" href="https://martinkoudela.com/">
 <meta name="author" content="Martin Koudela">
 <meta name="robots" content="index, follow">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F5F2EB" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Martin Koudela">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://martinkoudela.com/">
 <meta property="og:title" content="Martin Koudela">
-<meta property="og:description" content="Backend, robotics and open source. New site on the breadboard; projects and docs at docs.martinkoudela.com.">
-<meta property="og:image" content="https://martinkoudela.com/assets/og.png">
+<meta property="og:description" content="Backend, robotics and open source. New site in progress; projects and docs at docs.martinkoudela.com.">
+<meta property="og:image" content="https://martinkoudela.com/assets/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="Martin Koudela: backend, robotics and open source">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Martin Koudela in bold white lettering on black">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Martin Koudela">
-<meta name="twitter:description" content="Backend, robotics and open source. New site on the breadboard; projects and docs at docs.martinkoudela.com.">
-<meta name="twitter:image" content="https://martinkoudela.com/assets/og.png">
-<meta name="twitter:image:alt" content="Martin Koudela: backend, robotics and open source">
+<meta name="twitter:description" content="Backend, robotics and open source. New site in progress; projects and docs at docs.martinkoudela.com.">
+<meta name="twitter:image" content="https://martinkoudela.com/assets/og-home.jpg">
+<meta name="twitter:image:alt" content="Martin Koudela in bold white lettering on black">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -36,94 +35,38 @@
 <link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <link rel="preload" href="/assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Martin Koudela","url":"https://martinkoudela.com/","jobTitle":"Backend developer","address":{"@type":"PostalAddress","addressLocality":"Zlín","addressCountry":"CZ"},"knowsAbout":["Backend development","Laravel","Robotics","Open source"],"sameAs":["https://github.com/MartinKoudela","https://www.linkedin.com/in/martin-koudela-a5b645343/","https://docs.martinkoudela.com/"]}</script>
 <style>
 @font-face{font-family:"Archivo";src:url(/assets/archivo.woff2) format("woff2");font-weight:400 700;font-stretch:100% 125%;font-display:swap}
 @font-face{font-family:"Plex Mono";src:url(/assets/plex-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Plex Mono";src:url(/assets/plex-mono-500.woff2) format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"MK Symbols";src:url(/assets/symbols.woff) format("woff");unicode-range:U+2190,U+2192;font-display:swap}
-:root{--paper:#F5F2EB;--ink:#191816;--grey:#5F5C56;--rule:#D6D1C6;--tint:#EAE5DA;--accent:#BF3F0B;--led:#F06418;--text:"MK Symbols","Archivo",system-ui,sans-serif;--code:"MK Symbols","Plex Mono",ui-monospace,monospace;--gutter:48px;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--paper:#161513;--ink:#ECE8DF;--grey:#A39E94;--rule:#36332E;--tint:#211F1C;--accent:#FF8A4C;--led:#FF7A33;color-scheme:dark}}
-@media (max-width:767.98px){:root{--gutter:20px}}
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;min-height:100vh;min-height:100dvh;background:var(--paper);color:var(--ink);font-family:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
-.bar{display:flex;justify-content:space-between;gap:16px;padding-top:max(20px,env(safe-area-inset-top));padding-bottom:14px;border-bottom:1px solid var(--ink);font-family:var(--code);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
-.bar span{white-space:nowrap}
-.led{display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--led);box-shadow:0 0 0 3px color-mix(in srgb,var(--led) 22%,transparent);vertical-align:1px;animation:blink 2.4s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-main{flex:1}
-h1{margin:clamp(56px,11vh,120px) 0 0;font-size:clamp(64px,13.5vw,184px);line-height:.86;font-weight:640;font-stretch:125%;letter-spacing:-.025em}
+html,body{margin:0;height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#000;color-scheme:dark}
+body{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left));background:#000;color:#ECECEF;-webkit-font-smoothing:antialiased}
+main{display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
+h1{margin:0;font-family:"Archivo",system-ui,sans-serif;font-weight:640;font-stretch:125%;font-size:clamp(40px,11vw,120px);line-height:.86;letter-spacing:-.025em;text-shadow:0 0 6px rgba(255,255,255,.18)}
 h1 span{display:block}
-.tagline{margin:28px 0 0;max-width:640px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;color:var(--grey)}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:56px 0 0;padding:12px 0 0;border-top:1px solid var(--ink)}
-.facts dt{font-family:var(--code);font-size:12px;color:var(--grey)}
-.facts dd{margin:4px 0 0;font-size:16px}
-.notice{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;margin:72px 0 0;padding:24px 0 0;border-top:1px solid var(--rule)}
-.notice h2,.links h2{margin:0;font-family:var(--code);font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-.notice h2{color:var(--accent)}
-.notice p{margin:0;max-width:640px;font-size:17px}
-.notice p+p{margin-top:12px}
-.notice dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 20px;margin:20px 0 0;font-family:var(--code);font-size:13px}
-.notice dt{color:var(--grey)}
-.notice dd{margin:0}
-.links{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;margin:56px 0 0}
-.links ul{margin:0;padding:0;list-style:none;border-top:1px solid var(--ink)}
-.links li{border-bottom:1px solid var(--rule)}
-.links a{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:baseline;gap:20px;padding:18px 0;text-decoration:none;transition:background-color .15s}
-.links a:hover{background:var(--tint)}
-.links code{font-family:var(--code);font-size:12px;color:var(--grey)}
-.links b{display:block;font-size:20px;font-weight:600;font-stretch:112%;overflow-wrap:anywhere}
-.links small{display:block;margin-top:2px;font-size:15px;color:var(--grey)}
-.links i{font-style:normal;font-family:var(--code);font-size:18px;transition:transform .15s}
-.links a:hover i{transform:translateX(4px);color:var(--accent)}
-.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;margin-top:72px;padding-top:14px;padding-bottom:max(24px,env(safe-area-inset-bottom));border-top:1px solid var(--ink);font-family:var(--code);font-size:12px;color:var(--grey)}
-@media (max-width:767.98px){
-.bar .rev{display:none}
-.facts{grid-template-columns:1fr;gap:12px}
-.notice,.links{grid-template-columns:1fr;gap:16px}
-.links a{grid-template-columns:minmax(0,1fr) auto;gap:12px}
-.links code{grid-column:1/-1;margin-bottom:-8px}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+p{margin:0;font-family:"Plex Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.08em;color:rgba(236,236,239,.55)}
+nav ul{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margin:0;padding:0;list-style:none}
+nav a{font-family:"Plex Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.08em;color:#ECECEF;text-decoration:underline;text-decoration-color:rgba(236,236,239,.3);text-underline-offset:5px;transition:text-decoration-color .2s}
+nav a:hover,nav a:focus-visible{text-decoration-color:#ECECEF}
+nav a:focus-visible{outline:1px solid rgba(236,236,239,.6);outline-offset:4px}
+@media (min-width:900px){main{gap:34px}p,nav a{font-size:15px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header class="wrap">
-<div class="bar"><span><span class="led" aria-hidden="true"></span>martinkoudela.com</span><span class="rev">Rev 0.1 · Preliminary</span></div>
-</header>
-<main class="wrap">
+<main>
 <h1><span>Martin</span><span>Koudela</span></h1>
-<p class="tagline">Backend developer who also builds robots. Laravel by day, Raspberry Pi and ESP32 by night, open source by default.</p>
-<dl class="facts">
-<div><dt>Backend</dt><dd>Laravel, PHP, APIs, multi-tenant CMS</dd></div>
-<div><dt>Robotics</dt><dd>Unitree G1, Raspberry Pi vision, ESP32</dd></div>
-<div><dt>Open source</dt><dd>Code first, documentation second, pull requests welcome</dd></div>
-</dl>
-<section class="notice" aria-labelledby="notice-title">
-<h2 id="notice-title">Status notice</h2>
-<div>
-<p>A new site is on the breadboard. Most of it works, some of it smokes, and all of it is being rewired.</p>
-<p>Until it ships, this hand-soldered page holds the address. No framework, no build step, and somehow still more stable than the first prototype.</p>
-<dl>
-<dt>Availability</dt><dd>TBD</dd>
-<dt>Magic smoke</dt><dd>Contained, mostly</dd>
-</dl>
-</div>
-</section>
-<section class="links" aria-labelledby="links-title">
-<h2 id="links-title">Meanwhile</h2>
+<p>New site in progress.</p>
+<nav aria-label="Links">
 <ul>
-<li><a href="https://docs.martinkoudela.com/"><code>DOCS</code><span><b>docs.martinkoudela.com</b><small>Every project, schematic and spec sheet. The full datasheet.</small></span><i aria-hidden="true">→</i></a></li>
-<li><a href="https://card.martinkoudela.com/"><code>CARD</code><span><b>card.martinkoudela.com</b><small>The pocket edition. Fits behind a QR code.</small></span><i aria-hidden="true">→</i></a></li>
-<li><a href="https://github.com/MartinKoudela" rel="me"><code>GIT</code><span><b>github.com/MartinKoudela</b><small>Where the code actually lives.</small></span><i aria-hidden="true">→</i></a></li>
+<li><a href="https://docs.martinkoudela.com/">docs</a></li>
+<li><a href="https://card.martinkoudela.com/">card</a></li>
+<li><a href="https://github.com/MartinKoudela" rel="me">github</a></li>
+<li><a href="https://www.linkedin.com/in/martin-koudela-a5b645343/" rel="me">linkedin</a></li>
 </ul>
-</section>
+</nav>
 </main>
-<footer class="wrap"><div class="foot"><span>© 2026 Martin Koudela · Zlín, Czech Republic</span><span>Specifications subject to change without notice.</span></div></footer>
 </body>
 </html>
