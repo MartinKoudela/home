@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <style>
+    .paper { fill: #F4F2EC; }
+    .ring  { stroke: #191816; }
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #161513; }
+      .ring  { stroke: #EBE8E0; }
+    }
+  </style>
+  <rect class="paper" width="16" height="16" rx="3.52"/>
+  <circle class="ring" cx="8" cy="8" r="6.5" fill="none" stroke-width="1"/>
+  <circle cx="8" cy="8" r="4" fill="#E0763F"/>
+</svg>
