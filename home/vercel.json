@@ -8,9 +8,9 @@
       "statusCode": 301
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.martinkoudela.com" }],
-      "destination": "https://martinkoudela.com/:path*",
+      "destination": "https://martinkoudela.com/$1",
       "statusCode": 301
     }
   ],
