@@ -9,6 +9,19 @@ const QUOTES = [
     "9e7b660a1941749e92c73e6b9712be50.jpg",
     "b7608933bf7ee93e6447a444ac1cc233.jpg",
     "f55e121da215869d31a345b60a448884.jpg",
+    "0d1dca54ef154f984f9863d7188176dc.jpg",
+    "0f3c36d428ee768862862bebf2884497.jpg",
+    "1462b5bfaf88308a9556fe7e8343f991.jpg",
+    "249421f9be85c3865eb87877181e79f8.jpg",
+    "2ff12dd18f826a4bfc87dfa1469257e8.jpg",
+    "36049a4b165576dfee2f894dbc390ca9.jpg",
+    "489bd1bbdfbb8a350749ee7edee4f6ab.jpg",
+    "6f67316cf326a62cd56f50180e3edf7a.jpg",
+    "81bac3e24a60077c4a2a41bff09dc806.jpg",
+    "953030b0a7db0fb25a5522063d625fb7.jpg",
+    "d44bc89ce3f10a6cd7a48b0f807e9b7f.jpg",
+    "ef81ac7ac621f3b75bcf06207404c173.jpg",
+    "f49e127088d61fd6500ea39d6fee9147.jpg",
 ];
 
 (() => {
