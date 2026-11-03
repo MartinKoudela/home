@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Martin Koudela · Card</title>
+<meta name="description" content="Martin Koudela, backend developer building Laravel apps, robots and open-source tools. Website, docs and GitHub in one tap.">
+<link rel="canonical" href="https://card.martinkoudela.com/">
+<meta name="author" content="Martin Koudela">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EAE5DA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F0E0D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="profile">
+<meta property="profile:first_name" content="Martin">
+<meta property="profile:last_name" content="Koudela">
+<meta property="og:site_name" content="Martin Koudela">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://card.martinkoudela.com/">
+<meta property="og:title" content="Martin Koudela · Card">
+<meta property="og:description" content="Backend, robotics and open source. Website, docs and GitHub in one tap.">
+<meta property="og:image" content="https://card.martinkoudela.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Martin Koudela business card: backend, robotics and open source">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Martin Koudela · Card">
+<meta name="twitter:description" content="Backend, robotics and open source. Website, docs and GitHub in one tap.">
+<meta name="twitter:image" content="https://card.martinkoudela.com/assets/og.png">
+<meta name="twitter:image:alt" content="Martin Koudela business card: backend, robotics and open source">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";src:url(/assets/archivo.woff2) format("woff2");font-weight:400 700;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(/assets/plex-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(/assets/plex-mono-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"MK Symbols";src:url(/assets/symbols.woff) format("woff");unicode-range:U+2190,U+2192;font-display:swap}
+:root{--paper:#F5F2EB;--ink:#191816;--grey:#5F5C56;--rule:#D6D1C6;--tint:#EAE5DA;--desk:#EAE5DA;--accent:#BF3F0B;--led:#F06418;--text:"MK Symbols","Archivo",system-ui,sans-serif;--code:"MK Symbols","Plex Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--paper:#161513;--ink:#ECE8DF;--grey:#A39E94;--rule:#36332E;--tint:#211F1C;--desk:#0F0E0D;--accent:#FF8A4C;--led:#FF7A33;color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:var(--desk);color:var(--ink);font-family:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.card{width:100%;max-width:420px;padding:22px 22px 18px;background:var(--paper);border:1px solid var(--ink);border-radius:14px;box-shadow:0 1px 0 var(--rule),0 24px 48px -28px rgba(25,24,22,.45)}
+.bar{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--ink);font-family:var(--code);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.bar span{white-space:nowrap}
+.led{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:var(--led);box-shadow:0 0 0 3px color-mix(in srgb,var(--led) 22%,transparent);vertical-align:1px;animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+h1{margin:36px 0 0;font-size:clamp(48px,15vw,62px);line-height:.86;font-weight:640;font-stretch:125%;letter-spacing:-.025em}
+h1 span{display:block}
+.role{margin:16px 0 0;font-family:var(--code);font-size:13px;color:var(--grey)}
+.role b{font-weight:400;color:var(--accent)}
+ul{margin:28px 0 0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+li{border-bottom:1px solid var(--rule)}
+ul a{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:60px;padding:10px 4px;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background-color .15s}
+ul a:hover,ul a:active{background:var(--tint)}
+ul code{font-family:var(--code);font-size:11px;color:var(--grey)}
+ul b{display:block;font-size:17px;font-weight:600;font-stretch:112%}
+ul small{display:block;font-family:var(--code);font-size:12px;color:var(--grey);overflow-wrap:anywhere}
+ul i{font-style:normal;font-family:var(--code);font-size:17px;transition:transform .15s}
+ul a:hover i,ul a:active i{transform:translateX(3px);color:var(--accent)}
+.notice{margin:20px 0 0;padding:12px 14px;background:var(--tint);border-radius:8px;font-size:14px}
+.notice strong{display:block;margin-bottom:2px;font-family:var(--code);font-size:11px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+.foot{display:flex;justify-content:space-between;gap:12px;margin-top:18px;font-family:var(--code);font-size:11px;color:var(--grey)}
+@media (max-width:359.98px){.card{padding:18px 16px 14px}ul a{grid-template-columns:minmax(0,1fr) auto}ul code{display:none}.bar span+span{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="card">
+<div class="bar"><span><span class="led" aria-hidden="true"></span>Card</span><span>Rev 0.1 · Through-hole</span></div>
+<h1><span>Martin</span><span>Koudela</span></h1>
+<p class="role">Backend <b>·</b> Robotics <b>·</b> Open source</p>
+<ul>
+<li><a href="https://martinkoudela.com/"><code>WEB</code><span><b>Website</b><small>martinkoudela.com</small></span><i aria-hidden="true">→</i></a></li>
+<li><a href="https://docs.martinkoudela.com/"><code>DOCS</code><span><b>Projects &amp; docs</b><small>docs.martinkoudela.com</small></span><i aria-hidden="true">→</i></a></li>
+<li><a href="https://github.com/MartinKoudela" rel="me"><code>GIT</code><span><b>GitHub</b><small>github.com/MartinKoudela</small></span><i aria-hidden="true">→</i></a></li>
+</ul>
+<p class="notice"><strong>Prototype</strong>The full card is still in the reflow oven. This is the through-hole version: fewer features, very sturdy.</p>
+<div class="foot"><span>Zlín, CZ</span><span>© 2026</span></div>
+</main>
+</body>
+</html>
