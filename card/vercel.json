@@ -3,7 +3,7 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path((?!assets/|index\\.html$|favicon\\.ico$|favicon\\.svg$|apple-touch-icon\\.png$|robots\\.txt$).+)",
+      "source": "/:path((?!assets/|index\\.html$|favicon\\.ico$|favicon\\.svg$|favicon-16\\.png$|favicon-32\\.png$|icon-192\\.png$|icon-512\\.png$|apple-touch-icon\\.png$|robots\\.txt$).+)",
       "destination": "/",
       "statusCode": 302
     }
