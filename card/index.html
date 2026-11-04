@@ -1,490 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Martin Koudela · Card</title>
-    <meta name="description"
-          content="Martin Koudela, backend developer building Laravel apps, robots and open-source tools. GitHub, LinkedIn, Instagram, Laravix and website in one tap.">
-    <link rel="canonical" href="https://card.martinkoudela.com/">
-    <meta name="author" content="Martin Koudela">
-    <meta name="robots" content="index, follow">
-    <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#000000">
-    <meta property="og:type" content="profile">
-    <meta property="profile:first_name" content="Martin">
-    <meta property="profile:last_name" content="Koudela">
-    <meta property="og:site_name" content="Martin Koudela">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://card.martinkoudela.com/">
-    <meta property="og:title" content="Martin Koudela · Card">
-    <meta property="og:description"
-          content="Backend, robotics and open source. GitHub, LinkedIn, Instagram, Laravix and website in one tap.">
-    <meta property="og:image" content="https://card.martinkoudela.com/assets/og-card.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:alt" content="Martin Koudela in bold silver lettering on grainy black">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Martin Koudela · Card">
-    <meta name="twitter:description"
-          content="Backend, robotics and open source. GitHub, LinkedIn, Instagram, Laravix and website in one tap.">
-    <meta name="twitter:image" content="https://card.martinkoudela.com/assets/og-card.jpg">
-    <meta name="twitter:image:alt" content="Martin Koudela in bold silver lettering on grainy black">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
-    <link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-    <link rel="preload" href="/assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preconnect" href="https://open.spotify.com">
-    <style>
-        @font-face {
-            font-family: "Archivo";
-            src: url(/assets/archivo.woff2) format("woff2");
-            font-weight: 400 700;
-            font-stretch: 100% 125%;
-            font-display: swap
-        }
-
-        @font-face {
-            font-family: "Plex Mono";
-            src: url(/assets/plex-mono-400.woff2) format("woff2");
-            font-weight: 400;
-            font-display: swap
-        }
-
-        :root {
-            --ink: #ECECEF;
-            --blood: #8E0E18;
-            color-scheme: dark
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box
-        }
-
-        html, body {
-            margin: 0;
-            height: 100%;
-            overflow: hidden;
-            overscroll-behavior: none
-        }
-
-        html {
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-            background: #000
-        }
-
-        body {
-            height: 100vh;
-            height: 100dvh;
-            display: grid;
-            grid-template-rows: minmax(0, 1fr) auto;
-            background: #000;
-            color: var(--ink);
-            -webkit-font-smoothing: antialiased;
-            -webkit-tap-highlight-color: transparent
-        }
-
-        #noise {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            height: 100lvh;
-            display: block;
-            z-index: 0
-        }
-
-        #noise.off {
-            background: #050505
-        }
-
-        .fx {
-            position: fixed;
-            pointer-events: none
-        }
-
-        #quotes {
-            position: fixed;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-            mix-blend-mode: screen
-        }
-
-        .quote {
-            position: absolute;
-            overflow: hidden;
-            background: #000
-        }
-
-        .quote .frames {
-            position: relative;
-            will-change: transform, filter, opacity
-        }
-
-        .quote img {
-            display: block;
-            width: 100%;
-            height: auto;
-            filter: contrast(1.15)
-        }
-
-        .quote img + img {
-            position: absolute;
-            left: 0;
-            top: 0
-        }
-
-        .quote i {
-            position: absolute;
-            inset: 0;
-            background-image: var(--grain);
-            background-size: 140px 140px;
-            mix-blend-mode: multiply;
-            opacity: 0
-        }
-
-        .grain {
-            inset: -50%;
-            z-index: 4;
-            background-image: var(--grain);
-            background-size: 220px 220px;
-            opacity: .17;
-            mix-blend-mode: overlay;
-            animation: grain .42s steps(6) infinite
-        }
-
-        .vignette {
-            inset: 0;
-            z-index: 3;
-            background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .7) 100%)
-        }
-
-        @keyframes grain {
-            0% {
-                transform: translate(0, 0)
-            }
-            17% {
-                transform: translate(-6%, 4%)
-            }
-            33% {
-                transform: translate(4%, -7%)
-            }
-            50% {
-                transform: translate(-8%, -2%)
-            }
-            67% {
-                transform: translate(6%, 6%)
-            }
-            83% {
-                transform: translate(-3%, 7%)
-            }
-            100% {
-                transform: translate(0, 0)
-            }
-        }
-
-        main, footer {
-            position: relative;
-            z-index: 5
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(22px, 6dvh, 52px);
-            min-height: 0;
-            padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) 8px max(20px, env(safe-area-inset-left));
-            text-align: center
-        }
-
-        h1 {
-            margin: 0;
-            font-family: "Archivo", system-ui, sans-serif;
-            font-weight: 640;
-            font-stretch: 125%;
-            font-size: max(32px, min(12.5vw, 15dvh, 136px));
-            line-height: .86;
-            letter-spacing: -.025em;
-            color: var(--ink);
-            text-shadow: 0 0 6px rgba(255, 255, 255, .22), 0 0 26px rgba(255, 255, 255, .07);
-            -webkit-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            cursor: default
-        }
-
-        h1 span {
-            display: block
-        }
-
-        h1.jolt {
-            animation: jolt .3s steps(1) both
-        }
-
-        @keyframes jolt {
-            0% {
-                transform: translate(-3px, 1px) skewX(-6deg);
-                text-shadow: -3px 0 rgba(142, 14, 24, .85), 2px 0 rgba(255, 255, 255, .3)
-            }
-            25% {
-                transform: translate(2px, -1px);
-                clip-path: inset(0 0 48% 0)
-            }
-            45% {
-                transform: translate(-1px, 0) skewX(4deg);
-                text-shadow: 2px 0 rgba(142, 14, 24, .7), -1px 0 rgba(255, 255, 255, .25);
-                clip-path: none
-            }
-            70% {
-                transform: translate(1px, 1px)
-            }
-            100% {
-                transform: none
-            }
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: clamp(6px, 2.4vw, 26px);
-            margin: 0;
-            padding: 0;
-            list-style: none
-        }
-
-        nav a {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            color: var(--ink);
-            opacity: .9;
-            text-decoration: none;
-            transition: color .25s, opacity .25s
-        }
-
-        nav svg {
-            width: 26px;
-            height: 26px;
-            transition: filter .25s
-        }
-
-        nav span {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translate(-50%, -4px);
-            font-family: "Plex Mono", ui-monospace, monospace;
-            font-size: 10px;
-            letter-spacing: .12em;
-            text-transform: lowercase;
-            white-space: nowrap;
-            color: rgba(236, 236, 239, .72);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .2s, transform .2s
-        }
-
-        nav a:hover, nav a:focus-visible {
-            color: var(--blood);
-            opacity: 1
-        }
-
-        nav a:hover svg, nav a:focus-visible svg {
-            filter: drop-shadow(0 0 6px rgba(142, 14, 24, .7))
-        }
-
-        nav a:hover span, nav a:focus-visible span {
-            opacity: 1;
-            transform: translate(-50%, 0)
-        }
-
-        nav a:focus-visible {
-            outline: 1px solid rgba(142, 14, 24, .8);
-            outline-offset: 2px
-        }
-
-        footer {
-            display: flex;
-            justify-content: center;
-            padding: 0 max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left))
-        }
-
-        .player {
-            width: min(380px, 100%);
-            padding: 6px;
-            border-radius: 16px;
-            background: rgba(0, 0, 0, .55);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), 0 10px 40px -12px rgba(0, 0, 0, .9);
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px)
-        }
-
-        .player iframe {
-            display: block;
-            width: 100%;
-            height: 80px;
-            border: 0;
-            border-radius: 12px;
-            background: #000;
-            filter: brightness(.85) contrast(1.3)
-        }
-
-        #gate {
-            position: fixed;
-            inset: 0;
-            z-index: 10;
-            display: grid;
-            place-items: center;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            background: rgba(0, 0, 0, .6);
-            -webkit-backdrop-filter: blur(16px);
-            backdrop-filter: blur(16px);
-            color: var(--ink);
-            font: 400 14px/1 "Plex Mono", ui-monospace, monospace;
-            letter-spacing: .3em;
-            text-transform: lowercase;
-            cursor: pointer;
-            transition: opacity .8s, visibility .8s
-        }
-
-        #gate span {
-            text-shadow: 0 0 10px rgba(255, 255, 255, .35);
-            transition: color .25s, text-shadow .25s
-        }
-
-        #gate:hover span, #gate:focus-visible span {
-            color: #fff;
-            text-shadow: 0 0 10px rgba(142, 14, 24, .9), 0 0 2px rgba(255, 255, 255, .6)
-        }
-
-        #gate:focus-visible {
-            outline: none
-        }
-
-        .entered #gate {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none
-        }
-
-        main, footer {
-            transition: opacity 1.1s .2s, transform 1.1s .2s
-        }
-
-        html:not(.entered) main, html:not(.entered) footer {
-            opacity: 0;
-            transform: scale(.97)
-        }
-
-        @media (max-height: 420px) {
-            main {
-                gap: 10px
-            }
-
-            footer {
-                padding-bottom: max(8px, env(safe-area-inset-bottom))
-            }
-
-            nav a {
-                height: 40px
-            }
-        }
-
-        @media (max-width: 359.98px) {
-            nav ul {
-                gap: 2px
-            }
-
-            nav a {
-                width: 44px
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation: none !important;
-                transition: none !important
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Martin Koudela · Card</title>
+<meta name="description" content="Martin Koudela, backend developer from Zlín building Laravel apps, robots and open-source tools. GitHub, LinkedIn, Instagram, Laravix and website in one place.">
+<link rel="canonical" href="https://card.martinkoudela.com/">
+<meta name="author" content="Martin Koudela">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="profile">
+<meta property="profile:first_name" content="Martin">
+<meta property="profile:last_name" content="Koudela">
+<meta property="og:site_name" content="Martin Koudela">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://card.martinkoudela.com/">
+<meta property="og:title" content="Martin Koudela · Card">
+<meta property="og:description" content="Backend, robotics and open source. GitHub, LinkedIn, Instagram, Laravix and website in one place.">
+<meta property="og:image" content="https://card.martinkoudela.com/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Martin Koudela in bold lettering on black">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Martin Koudela · Card">
+<meta name="twitter:description" content="Backend, robotics and open source. GitHub, LinkedIn, Instagram, Laravix and website in one place.">
+<meta name="twitter:image" content="https://card.martinkoudela.com/assets/og-card.jpg">
+<meta name="twitter:image:alt" content="Martin Koudela in bold lettering on black">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="preload" href="/assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Martin Koudela","url":"https://card.martinkoudela.com/","jobTitle":"Backend developer","email":"mailto:mk@martinkoudela.com","address":{"@type":"PostalAddress","addressLocality":"Zlín","addressCountry":"CZ"},"sameAs":["https://github.com/MartinKoudela","https://www.linkedin.com/in/martin-koudela-a5b645343/","https://www.instagram.com/koudy_martin/","https://martinkoudela.com/","https://laravix.com/"]}</script>
+<style>
+@font-face{font-family:"Archivo";src:url(/assets/archivo.woff2) format("woff2");font-weight:400 700;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(/assets/plex-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--ink:#ECECEF;--dim:rgba(236,236,239,.55);--line:rgba(236,236,239,.1);color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#000}
+body{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));background:#000;color:var(--ink);font-family:"Plex Mono",ui-monospace,monospace;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+main{width:min(420px,100%);display:flex;flex-direction:column;gap:36px}
+header{display:flex;flex-direction:column;gap:14px;text-align:center}
+h1{margin:0;font-family:"Archivo",system-ui,sans-serif;font-weight:640;font-stretch:125%;font-size:clamp(38px,11vw,56px);line-height:.88;letter-spacing:-.025em}
+h1 span{display:block}
+header p{margin:0;font-size:13px;letter-spacing:.06em;color:var(--dim)}
+ul{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+a{display:flex;align-items:center;gap:14px;min-height:56px;padding:0 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025);color:var(--ink);text-decoration:none;transition:background .2s,border-color .2s}
+a svg{flex:none;width:20px;height:20px}
+a b{font-weight:400;font-size:14px;letter-spacing:.04em}
+a small{margin-left:auto;min-width:0;font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+a::after{content:"↗";flex:none;font-size:13px;color:var(--dim);transition:color .2s,transform .2s}
+a.mail::after{content:"→"}
+a:hover,a:focus-visible{background:rgba(255,255,255,.06);border-color:rgba(236,236,239,.28)}
+a:hover::after,a:focus-visible::after{color:var(--ink);transform:translate(2px,-2px)}
+a.mail:hover::after,a.mail:focus-visible::after{transform:translateX(3px)}
+a:focus-visible{outline:1px solid rgba(236,236,239,.6);outline-offset:3px}
+footer{text-align:center;font-size:11px;letter-spacing:.08em;color:rgba(236,236,239,.35)}
+@media (max-width:359.98px){a small{display:none}a::after{margin-left:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-<canvas id="noise" aria-hidden="true"></canvas>
-<div id="quotes" aria-hidden="true"></div>
-<div class="fx vignette" aria-hidden="true"></div>
-<div class="fx grain" aria-hidden="true"></div>
 <main>
-    <h1><span>Martin</span> <span>Koudela</span></h1>
-    <nav aria-label="Links">
-        <ul>
-            <li><a href="https://github.com/MartinKoudela" target="_blank" rel="me noopener" aria-label="GitHub"
-                   title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                </svg>
-                <span>github</span></a></li>
-            <li><a href="https://www.linkedin.com/in/martin-koudela-a5b645343/" target="_blank" rel="me noopener"
-                   aria-label="LinkedIn" title="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     aria-hidden="true">
-                    <rect x="2.5" y="2.5" width="19" height="19" rx="4.5"/>
-                    <path d="M8 11v5.5M12 16.5v-5.5M12 13.6c0-1.7 1.1-2.7 2.5-2.7s2.5 1 2.5 2.7v2.9"/>
-                    <circle cx="8" cy="7.6" r="1.25" fill="currentColor" stroke="none"/>
-                </svg>
-                <span>linkedin</span></a></li>
-            <li><a href="https://www.instagram.com/koudy_martin/" target="_blank" rel="me noopener"
-                   aria-label="Instagram" title="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-                    <circle cx="12" cy="12" r="4.4"/>
-                    <circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/>
-                </svg>
-                <span>insta</span></a></li>
-            <li><a href="https://martinkoudela.com/" target="_blank" rel="noopener" aria-label="Website"
-                   title="Website">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9.5"/>
-                    <path d="M2.5 12h19M12 2.5c3 3.2 3 15.8 0 19M12 2.5c-3 3.2-3 15.8 0 19"/>
-                </svg>
-                <span>web</span></a></li>
-            <li><a href="https://laravix.com/" target="_blank" rel="noopener" aria-label="Laravix" title="Laravix">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <g transform="translate(3.52 2.5) scale(.14202)">
-                        <polygon points="112.52 103.27 112.52 77.53 76.24 56.59 76.24 13.59 52.69 0 7.3 26.21 30.74 39.74 30.74 82.73 66.94 103.63 66.94 129.59 112.52 103.27"/>
-                        <polygon points="59.72 107.89 23.44 86.95 23.43 43.95 0 30.42 0 99.33 59.67 133.78 59.72 133.76 59.72 107.89"/>
-                        <polygon points="83.54 52.37 119.35 73.04 119.35 30.42 83.54 9.75 83.54 52.37"/>
-                    </g>
-                </svg>
-                <span>laravix</span></a></li>
-        </ul>
-    </nav>
+<header>
+<h1><span>Martin</span> <span>Koudela</span></h1>
+<p>Backend developer · Zlín</p>
+</header>
+<nav aria-label="Links">
+<ul>
+<li><a href="https://github.com/MartinKoudela" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><b>GitHub</b><small>MartinKoudela</small></a></li>
+<li><a href="https://www.linkedin.com/in/martin-koudela-a5b645343/" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="4.5"/><path d="M8 11v5.5M12 16.5v-5.5M12 13.6c0-1.7 1.1-2.7 2.5-2.7s2.5 1 2.5 2.7v2.9"/><circle cx="8" cy="7.6" r="1.25" fill="currentColor" stroke="none"/></svg><b>LinkedIn</b><small>Martin Koudela</small></a></li>
+<li><a href="https://www.instagram.com/koudy_martin/" target="_blank" rel="me noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg><b>Instagram</b><small>@koudy_martin</small></a></li>
+<li><a href="https://martinkoudela.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3.2 3 15.8 0 19M12 2.5c-3 3.2-3 15.8 0 19"/></svg><b>Website</b><small>martinkoudela.com</small></a></li>
+<li><a href="https://laravix.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g transform="translate(3.52 2.5) scale(.14202)"><polygon points="112.52 103.27 112.52 77.53 76.24 56.59 76.24 13.59 52.69 0 7.3 26.21 30.74 39.74 30.74 82.73 66.94 103.63 66.94 129.59 112.52 103.27"/><polygon points="59.72 107.89 23.44 86.95 23.43 43.95 0 30.42 0 99.33 59.67 133.78 59.72 133.76 59.72 107.89"/><polygon points="83.54 52.37 119.35 73.04 119.35 30.42 83.54 9.75 83.54 52.37"/></g></svg><b>Laravix</b><small>laravix.com</small></a></li>
+<li><a href="mailto:mk@martinkoudela.com" class="mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><b>Email</b><small>mk@martinkoudela.com</small></a></li>
+</ul>
+</nav>
+<footer>card.martinkoudela.com</footer>
 </main>
-<footer>
-    <div class="player">
-        <div id="player"></div>
-    </div>
-</footer>
-<button id="gate" type="button"><span>click to enter</span></button>
-<script src="/assets/fx.js" defer></script>
-<script src="/assets/music.js" defer></script>
-<script src="/assets/quotes.js" defer></script>
 </body>
 </html>
