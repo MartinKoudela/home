@@ -17,7 +17,7 @@ const rest = projects.filter((project) => !selected.has(project.slug));
 
 <section class="section">
   <div class="wrap">
-    <SectionHead title="Selected work" aside={`${pad(rows.length)} / ${pad(projects.length)}`} />
+    <SectionHead title="Selected work" />
     <ol class="list" data-work>
       {
         rows.map((row, i) => (
@@ -49,7 +49,7 @@ const rest = projects.filter((project) => !selected.has(project.slug));
     </ol>
 
     <div class="more">
-      <SectionHead title="More work" aside={pad(rest.length)} />
+      <SectionHead title="More work" />
       <ul>
         {
           rest.map((project) => (
