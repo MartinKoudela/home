@@ -54,10 +54,7 @@ img{display:block;max-width:100%}
 .mono{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
 .hero .wrap{flex:1;display:flex;flex-direction:column}
-.bar{display:flex;justify-content:space-between;gap:16px;padding-block:max(22px,env(safe-area-inset-top)) 22px}
-.bar span{display:inline-flex;align-items:center;gap:10px}
-.led{width:7px;height:7px;border-radius:50%;background:var(--led);box-shadow:0 0 10px var(--led);animation:blink 2.4s steps(1) infinite}
-h1{margin-top:auto;padding-top:48px;font-weight:640;font-stretch:125%;font-size:clamp(40px,16.2cqw,260px);line-height:.84;letter-spacing:-.03em;text-transform:uppercase;user-select:none;-webkit-user-select:none}
+h1{margin-top:auto;padding-top:max(48px,env(safe-area-inset-top));font-weight:640;font-stretch:125%;font-size:clamp(40px,16.2cqw,260px);line-height:.84;letter-spacing:-.03em;text-transform:uppercase;user-select:none;-webkit-user-select:none}
 h1 .ln{display:block;white-space:nowrap;overflow:hidden;padding-block:.04em .12em;margin-bottom:-.1em}
 h1 .in{display:inline-block;animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
 h1 .ln+.ln .in{animation-delay:.09s}
@@ -75,7 +72,7 @@ section{padding-block:clamp(64px,8vw,120px)}
 .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
 .head h2{font:inherit;color:var(--ink)}
 .work ol{position:relative}
-.work li a{position:relative;display:grid;grid-template-columns:3ch 1fr 60px;column-gap:14px;align-items:center;padding-block:18px;border-bottom:1px solid var(--line)}
+.work li div{position:relative;display:grid;grid-template-columns:3ch 1fr 60px;column-gap:14px;align-items:center;padding-block:18px;border-bottom:1px solid var(--line)}
 .work .n{align-self:start;padding-top:.5em;transition:color .2s}
 .work .t{min-width:0}
 .work b{display:block;font-weight:620;font-stretch:125%;font-size:clamp(26px,4.3cqw,58px);line-height:1;letter-spacing:-.025em;transition:transform .35s cubic-bezier(.2,.7,.1,1)}
@@ -84,10 +81,8 @@ section{padding-block:clamp(64px,8vw,120px)}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .shot .top{object-position:50% 0}
 .shot em{display:none;font-style:normal}
-.more{display:inline-flex;gap:10px;margin-top:28px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:4px;transition:border-color .2s}
-.more:hover{border-color:var(--led)}
-.more::after,.links a::after{content:"\2197";color:var(--dim);transition:transform .2s,color .2s}
-.more:hover::after,.links a:hover::after{transform:translate(2px,-2px);color:var(--led)}
+.links a::after{content:"\2197";color:var(--dim);transition:transform .2s,color .2s}
+.links a:hover::after{transform:translate(2px,-2px);color:var(--led)}
 .about .grid{display:grid;grid-template-columns:1fr;gap:36px;padding-top:36px}
 .me{position:relative;max-width:340px;border-bottom:1px solid var(--line)}
 .me img{width:100%;height:auto;filter:grayscale(1) contrast(1.08)}
@@ -109,7 +104,6 @@ section{padding-block:clamp(64px,8vw,120px)}
 .links{display:flex;flex-wrap:wrap;gap:10px 26px}
 .links a{display:inline-flex;gap:8px;color:var(--ink)}
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:clamp(64px,9vw,120px);padding-block:22px max(22px,env(safe-area-inset-bottom));border-top:1px solid var(--line);font-size:11px}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (min-width:760px){
@@ -121,17 +115,17 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;ma
 }
 @media (min-width:960px){
 .work ol{padding-right:46cqw}
-.work li a{grid-template-columns:4ch 1fr;padding-block:clamp(16px,1.9cqw,28px);transition:opacity .25s}
-.work ol:hover a:not(:hover),.work ol:focus-within a:not(:focus-visible){opacity:.38}
-.work li a:hover b,.work li a:focus-visible b{transform:translateX(.22em)}
-.work li a:hover .n,.work li a:focus-visible .n{color:var(--led)}
+.work li div{grid-template-columns:4ch 1fr;padding-block:clamp(16px,1.9cqw,28px);transition:opacity .25s}
+.work ol:hover li div:not(:hover){opacity:.38}
+.work li div:hover b{transform:translateX(.22em)}
+.work li div:hover .n{color:var(--led)}
 .shot{position:absolute;top:28px;left:calc(100% + 4cqw);width:42cqw;aspect-ratio:auto;overflow:visible;background:none;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,transform .5s cubic-bezier(.2,.7,.1,1),visibility 0s .3s}
 .work li:nth-child(n+4) .shot{top:auto;bottom:44px}
 .shot img{position:static;height:auto}
 .work li:nth-child(5) .shot{width:30cqw}
 .shot .top{aspect-ratio:3/4}
 .shot em{display:block;position:absolute;left:0;top:calc(100% + 12px);white-space:nowrap}
-.work li a.on .shot{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .5s cubic-bezier(.2,.7,.1,1),visibility 0s}
+.work li div.on .shot{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .5s cubic-bezier(.2,.7,.1,1),visibility 0s}
 }
 @supports (animation-timeline:view()){
 @media (prefers-reduced-motion:no-preference){
@@ -144,10 +138,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;ma
 <body>
 <header class="hero">
 <div class="wrap">
-<div class="bar mono">
-<span><span class="led" aria-hidden="true"></span>Open to projects</span>
-<span>Zlín, CZ <time id="clock"></time></span>
-</div>
 <h1 id="name" aria-label="Martin Koudela"><span class="ln" aria-hidden="true"><span class="in">Martin</span></span><span class="ln" aria-hidden="true"><span class="in">Koudela</span></span></h1>
 <div class="under">
 <p class="lede">I build Laravel platforms, program a humanoid robot and design the hardware in between.</p>
@@ -162,16 +152,15 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;ma
 <main>
 <section class="work">
 <div class="wrap">
-<div class="head mono"><h2>Selected work</h2><span>06 / 13</span></div>
+<div class="head mono"><h2>Selected work</h2><span>06</span></div>
 <ol id="work">
-<li><a class="on" href="https://docs.martinkoudela.com/project/unitree-g1"><span class="n mono">01</span><span class="t"><b>Unitree G1</b><span class="d mono">Humanoid robot programming, SYNOT ICT</span></span><span class="shot"><img src="/assets/g1.webp" width="1000" height="1250" alt="Unitree G1 humanoid robot with a blue light ring around its head" decoding="async"><em class="mono">Fig. 01 · Unitree G1 EDU, 10+ public demos</em></span></a></li>
-<li><a href="https://docs.martinkoudela.com/project/laravix-cms"><span class="n mono">02</span><span class="t"><b>Laravix</b><span class="d mono">Open-source multi-tenant CMS, Laravel</span></span><span class="shot"><img src="/assets/laravix.webp" width="1400" height="839" alt="Laravix visual page builder editing a homepage headline" loading="lazy" decoding="async"><em class="mono">Fig. 02 · Visual builder, in active development</em></span></a></li>
-<li><a href="https://docs.martinkoudela.com/project/esp32-pentesting-tool"><span class="n mono">03</span><span class="t"><b>l0k1</b><span class="d mono">ESP32-S3 RF handheld, KiCad</span></span><span class="shot"><img src="/assets/l0k1.webp" width="1600" height="1132" alt="KiCad root schematic of l0k1 with an ESP32-S3 and ten subsystem sheets" loading="lazy" decoding="async"><em class="mono">Fig. 03 · Root sheet, Rev v0.1</em></span></a></li>
-<li><a href="https://docs.martinkoudela.com/project/rpi-cam"><span class="n mono">04</span><span class="t"><b>RaspiVision</b><span class="d mono">Raspberry Pi security camera, YOLOv8</span></span><span class="shot"><img src="/assets/raspivision.webp" width="1400" height="875" alt="Raspberry Pi 4 in an open black case with a camera ribbon cable" loading="lazy" decoding="async"><em class="mono">Fig. 04 · Raspberry Pi 4, PIR trigger, MJPEG live view</em></span></a></li>
-<li><a href="https://docs.martinkoudela.com/project/backlog"><span class="n mono">05</span><span class="t"><b>Backlog</b><span class="d mono">iOS app for projects and tasks, SwiftUI</span></span><span class="shot"><img class="top" src="/assets/backlog.webp" width="700" height="1522" alt="Backlog iOS app Today screen with overdue tasks grouped by project" loading="lazy" decoding="async"><em class="mono">Fig. 05 · Today screen</em></span></a></li>
-<li><a href="https://docs.martinkoudela.com/project/l0k1-game"><span class="n mono">06</span><span class="t"><b>l0k1 Game</b><span class="d mono">3D browser horror game, Three.js</span></span><span class="shot"><img src="/assets/game.webp" width="1400" height="910" alt="Dark graffiti-covered hacker apartment with a laptop running a terminal" loading="lazy" decoding="async"><em class="mono">Fig. 06 · In-game OS with a working terminal</em></span></a></li>
+<li><div class="on"><span class="n mono">01</span><span class="t"><b>Unitree G1</b><span class="d mono">Humanoid robot programming, SYNOT ICT</span></span><span class="shot"><img src="/assets/g1.webp" width="1000" height="1250" alt="Unitree G1 humanoid robot with a blue light ring around its head" decoding="async"><em class="mono">Fig. 01 · Unitree G1 EDU, 10+ public demos</em></span></div></li>
+<li><div><span class="n mono">02</span><span class="t"><b>Laravix</b><span class="d mono">Open-source multi-tenant CMS, Laravel</span></span><span class="shot"><img src="/assets/laravix.webp" width="1400" height="839" alt="Laravix visual page builder editing a homepage headline" loading="lazy" decoding="async"><em class="mono">Fig. 02 · Visual builder, in active development</em></span></div></li>
+<li><div><span class="n mono">03</span><span class="t"><b>l0k1</b><span class="d mono">ESP32-S3 RF handheld, KiCad</span></span><span class="shot"><img src="/assets/l0k1.webp" width="1600" height="1132" alt="KiCad root schematic of l0k1 with an ESP32-S3 and ten subsystem sheets" loading="lazy" decoding="async"><em class="mono">Fig. 03 · Root sheet, Rev v0.1</em></span></div></li>
+<li><div><span class="n mono">04</span><span class="t"><b>RaspiVision</b><span class="d mono">Raspberry Pi security camera, YOLOv8</span></span><span class="shot"><img src="/assets/raspivision.webp" width="1400" height="875" alt="Raspberry Pi 4 in an open black case with a camera ribbon cable" loading="lazy" decoding="async"><em class="mono">Fig. 04 · Raspberry Pi 4, PIR trigger, MJPEG live view</em></span></div></li>
+<li><div><span class="n mono">05</span><span class="t"><b>Backlog</b><span class="d mono">iOS app for projects and tasks, SwiftUI</span></span><span class="shot"><img class="top" src="/assets/backlog.webp" width="700" height="1522" alt="Backlog iOS app Today screen with overdue tasks grouped by project" loading="lazy" decoding="async"><em class="mono">Fig. 05 · Today screen</em></span></div></li>
+<li><div><span class="n mono">06</span><span class="t"><b>l0k1 Game</b><span class="d mono">3D browser horror game, Three.js</span></span><span class="shot"><img src="/assets/game.webp" width="1400" height="910" alt="Dark graffiti-covered hacker apartment with a laptop running a terminal" loading="lazy" decoding="async"><em class="mono">Fig. 06 · In-game OS with a working terminal</em></span></div></li>
 </ol>
-<a class="more mono" href="https://docs.martinkoudela.com/">All 13 projects, documented like datasheets</a>
 </div>
 </section>
 <section class="about">
@@ -202,28 +191,19 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;ma
 <a href="https://github.com/MartinKoudela" target="_blank" rel="me noopener">GitHub</a>
 <a href="https://www.linkedin.com/in/martin-koudela-a5b645343/" target="_blank" rel="me noopener">LinkedIn</a>
 <a href="https://www.instagram.com/koudy_martin/" target="_blank" rel="me noopener">Instagram</a>
-<a href="https://docs.martinkoudela.com/">Docs</a>
-<a href="https://card.martinkoudela.com/">Card</a>
 </nav>
 </div>
-<footer class="mono"><span>Martin Koudela, Zlín</span><span>Hand-written HTML, no frameworks</span></footer>
+<footer class="mono"><span>© 2026 Martin Koudela</span><span>Zlín, Czech Republic</span></footer>
 </div>
 </section>
 </main>
 <script>
 (()=>{
-const clock=document.getElementById("clock");
-const fmt=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Prague",hour:"2-digit",minute:"2-digit"});
-const tick=()=>{clock.textContent=fmt.format(new Date())};
-tick();
-setInterval(tick,20000);
-
 const work=document.getElementById("work");
-const rows=[...work.querySelectorAll("a")];
+const rows=[...work.querySelectorAll("li div")];
 const pick=a=>rows.forEach(r=>r.classList.toggle("on",r===a));
 rows.forEach(a=>{
 a.addEventListener("pointerenter",()=>pick(a));
-a.addEventListener("focus",()=>pick(a));
 });
 
 const copy=document.getElementById("copy");
