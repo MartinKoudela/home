@@ -1,0 +1,116 @@
+---
+import { Image } from "astro:assets";
+import SectionHead from "./SectionHead.astro";
+import portrait from "../assets/me.webp";
+import { about, kit, site } from "../data/site";
+---
+
+<section class="section">
+  <div class="wrap">
+    <SectionHead title="About" aside={site.location} />
+    <div class="grid">
+      <figure class="reveal">
+        <Image src={portrait} alt={`Portrait of ${site.name}`} widths={[400, 800]} sizes="340px" />
+        <figcaption class="mono">{site.name}</figcaption>
+      </figure>
+      <div class="say reveal">
+        {about.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+    <dl class="kit reveal">
+      {
+        kit.map((item) => (
+          <div>
+            <dt class="mono">{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 36px;
+    padding-top: 36px;
+  }
+
+  figure {
+    position: relative;
+    max-width: 340px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  figure img {
+    width: 100%;
+    filter: grayscale(1) contrast(1.08);
+  }
+
+  figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 11px;
+  }
+
+  .say {
+    font-size: clamp(22px, 2.9cqw, 40px);
+    font-weight: 450;
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+    text-wrap: pretty;
+  }
+
+  .say p + p {
+    margin-top: 0.7em;
+    color: var(--dim);
+  }
+
+  .kit {
+    display: grid;
+    margin-top: clamp(40px, 6vw, 72px);
+    border-top: 1px solid var(--line);
+  }
+
+  .kit div {
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kit dt {
+    margin-bottom: 8px;
+    color: var(--faint);
+  }
+
+  .kit dd {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  @media (min-width: 760px) {
+    .grid {
+      grid-template-columns: minmax(220px, 3fr) 8fr;
+      gap: clamp(40px, 6cqw, 96px);
+      align-items: end;
+    }
+
+    .kit {
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kit div {
+      padding: 20px 24px 24px 0;
+      border-bottom: 0;
+    }
+
+    .kit div + div {
+      padding-left: 24px;
+      border-left: 1px solid var(--line);
+    }
+  }
+</style>

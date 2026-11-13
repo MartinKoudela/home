@@ -1,0 +1,49 @@
+---
+import type { Card } from "../data/types";
+
+interface Props {
+  card: Card;
+}
+
+const { card } = Astro.props;
+---
+
+<div class:list={["card", { tint: card.tint, planned: card.planned }]}>
+  <b>{card.title}</b>
+  {card.lines && card.inline && <span> · {card.lines.join(" ")}</span>}
+  {card.lines && !card.inline && card.lines.map((line) => <span class:list={["line", { mono: card.mono }]}>{line}</span>)}
+</div>
+
+<style>
+  .card {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--dim);
+  }
+
+  .tint {
+    background: var(--tint);
+    border-color: var(--faint);
+  }
+
+  .planned {
+    border-style: dashed;
+  }
+
+  b {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .line {
+    display: block;
+    min-height: 0.6em;
+  }
+
+  .line.mono {
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+</style>

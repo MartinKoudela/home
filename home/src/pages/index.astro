@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Work from "../components/Work.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { site, socials } from "../data/site";
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: `${site.url}/`,
+  jobTitle: "Robotics programmer",
+  worksFor: { "@type": "Organization", name: "SYNOT ICT" },
+  email: `mailto:${site.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Zlín", addressCountry: "CZ" },
+  knowsAbout: ["Backend development", "Laravel", "Robotics", "Unitree G1", "Raspberry Pi", "ESP32-S3", "KiCad", "Networking", "Security", "Open source"],
+  sameAs: socials.map((social) => social.href),
+};
+---
+
+<Base>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(person)} />
+  <Hero />
+  <main>
+    <Work />
+    <About />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

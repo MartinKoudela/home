@@ -1,0 +1,108 @@
+---
+import DiagramCard from "./DiagramCard.astro";
+import type { DiagramNode } from "../data/types";
+
+interface Props {
+  nodes: DiagramNode[];
+}
+
+const { nodes } = Astro.props;
+---
+
+{
+  nodes.map((node) => {
+    switch (node.t) {
+      case "card":
+        return <DiagramCard card={node.card} />;
+      case "arrow":
+        return (
+          <svg class="down" width="8" height="24" viewBox="0 0 8 24" aria-hidden="true">
+            <path d="M4 0 L4 17" />
+            <path class="tip" d="M1 16 L4 23 L7 16 Z" />
+          </svg>
+        );
+      case "grid":
+        return (
+          <div class="grid">
+            {node.cards.map((card) => (
+              <DiagramCard card={card} />
+            ))}
+          </div>
+        );
+      case "band":
+        return (
+          <div class:list={["band", { tint: node.tint }]}>
+            <p class="mono">{node.label}</p>
+            <Astro.self nodes={node.nodes} />
+            {node.note && <p class="note">{node.note}</p>}
+          </div>
+        );
+      case "note":
+        return <p class="note">{node.text}</p>;
+      case "pair":
+        return (
+          <div class="pair">
+            <DiagramCard card={node.left} />
+            <svg class="both" width="38" height="18" viewBox="0 0 38 18" aria-hidden="true">
+              <path d="M3 5 L31 5" />
+              <path class="tip" d="M30 2 L36 5 L30 8 Z" />
+              <path d="M35 13 L7 13" />
+              <path class="tip" d="M8 10 L2 13 L8 16 Z" />
+            </svg>
+            <DiagramCard card={node.right} />
+          </div>
+        );
+      case "narrow":
+        return <Astro.self nodes={node.nodes} />;
+    }
+  })
+}
+
+<style>
+  svg {
+    flex: none;
+    align-self: center;
+    stroke: var(--dim);
+    stroke-width: 1;
+    fill: none;
+  }
+
+  .tip {
+    fill: var(--dim);
+    stroke: none;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .band {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px dashed var(--line);
+  }
+
+  .band.tint {
+    background: var(--tint);
+  }
+
+  .band .mono {
+    font-size: 11px;
+  }
+
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .note {
+    font-size: 14px;
+    color: var(--dim);
+  }
+</style>

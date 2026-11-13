@@ -1,0 +1,22 @@
+---
+import { site } from "../data/site";
+---
+
+<footer class="wrap">
+  <div class="mono">
+    <span>© {site.year} {site.name}</span>
+    <span>{site.location}</span>
+  </div>
+</footer>
+
+<style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-block: 22px max(22px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    font-size: 11px;
+  }
+</style>

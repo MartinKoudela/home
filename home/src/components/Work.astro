@@ -1,0 +1,254 @@
+---
+import { Image } from "astro:assets";
+import SectionHead from "./SectionHead.astro";
+import { featured } from "../data/site";
+import { projects } from "../data/projects";
+import { projectImage } from "../lib/images";
+import { pad } from "../lib/text";
+
+const rows = featured.map((item, i) => ({
+  ...item,
+  number: pad(i + 1),
+  project: projects.find((project) => project.slug === item.slug)!,
+}));
+const selected = new Set(featured.map((item) => item.slug));
+const rest = projects.filter((project) => !selected.has(project.slug));
+---
+
+<section class="section">
+  <div class="wrap">
+    <SectionHead title="Selected work" aside={`${pad(rows.length)} / ${pad(projects.length)}`} />
+    <ol class="list" data-work>
+      {
+        rows.map((row, i) => (
+          <li>
+            <a href={`/project/${row.slug}`} class:list={{ on: i === 0 }}>
+              <span class="number mono">{row.number}</span>
+              <span class="text">
+                <b class="display" transition:name={`name-${row.slug}`}>
+                  {row.project.name}
+                </b>
+                <span class="tagline mono">{row.project.tagline}</span>
+              </span>
+              <span class:list={["shot", { phone: row.phone }]}>
+                <Image
+                  src={projectImage(row.image)}
+                  alt=""
+                  widths={[160, 640, 1200]}
+                  sizes="(min-width: 960px) 42vw, 60px"
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+                <em class="mono">
+                  Fig. {row.number} · {row.caption}
+                </em>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="more">
+      <SectionHead title="More work" aside={pad(rest.length)} />
+      <ul>
+        {
+          rest.map((project) => (
+            <li>
+              <a href={`/project/${project.slug}`}>
+                <b transition:name={`name-${project.slug}`}>{project.name}</b>
+                <span class="mono">{project.tagline}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  import "../scripts/work";
+</script>
+
+<style>
+  .list a {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3ch 1fr 60px;
+    column-gap: 14px;
+    align-items: center;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .number {
+    align-self: start;
+    padding-top: 0.5em;
+    transition: color 0.2s;
+  }
+
+  .text {
+    min-width: 0;
+  }
+
+  .list b {
+    display: block;
+    width: fit-content;
+    font-weight: 620;
+    font-size: clamp(26px, 4.3cqw, 58px);
+    letter-spacing: -0.025em;
+    transition: transform 0.35s var(--ease);
+  }
+
+  .tagline {
+    display: block;
+    margin-top: 8px;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .shot {
+    display: block;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .shot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .shot.phone img {
+    object-position: 50% 0;
+  }
+
+  .shot em {
+    display: none;
+    font-style: normal;
+  }
+
+  .more {
+    margin-top: clamp(56px, 7vw, 96px);
+  }
+
+  .more a {
+    display: grid;
+    gap: 4px 24px;
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.2s;
+  }
+
+  .more b {
+    width: fit-content;
+    font-weight: 560;
+    font-stretch: 112%;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .more span {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .more a:hover span {
+    color: var(--accent);
+  }
+
+  @media (min-width: 760px) {
+    .more ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: clamp(32px, 5cqw, 80px);
+    }
+
+    .more a {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .list {
+      padding-right: 46cqw;
+    }
+
+    .list a {
+      grid-template-columns: 4ch 1fr;
+      padding-block: clamp(16px, 1.9cqw, 28px);
+      transition: opacity 0.25s;
+    }
+
+    .list:hover a:not(:hover),
+    .list:focus-within a:not(:focus-visible) {
+      opacity: 0.38;
+    }
+
+    .list a:hover b,
+    .list a:focus-visible b {
+      transform: translateX(0.22em);
+    }
+
+    .list a:hover .number,
+    .list a:focus-visible .number {
+      color: var(--accent);
+    }
+
+    .shot {
+      position: absolute;
+      top: 28px;
+      left: calc(100% + 4cqw);
+      width: 42cqw;
+      aspect-ratio: auto;
+      overflow: visible;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition:
+        opacity 0.3s,
+        transform 0.5s var(--ease),
+        visibility 0s 0.3s;
+    }
+
+    .list li:nth-child(n + 4) .shot {
+      top: auto;
+      bottom: 44px;
+    }
+
+    .shot img {
+      position: static;
+      height: auto;
+    }
+
+    .shot.phone {
+      width: 30cqw;
+    }
+
+    .shot.phone img {
+      aspect-ratio: 3 / 4;
+    }
+
+    .shot em {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 12px);
+      white-space: nowrap;
+    }
+
+    a.on .shot {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition:
+        opacity 0.3s,
+        transform 0.5s var(--ease),
+        visibility 0s;
+    }
+  }
+</style>

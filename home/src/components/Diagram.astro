@@ -1,0 +1,34 @@
+---
+import DiagramNodes from "./DiagramNodes.astro";
+import type { DiagramNode } from "../data/types";
+
+interface Props {
+  nodes: DiagramNode[];
+  caption: string;
+  label: string;
+}
+
+const { nodes, caption, label } = Astro.props;
+---
+
+<figure>
+  <div class="flow">
+    <DiagramNodes nodes={nodes} />
+  </div>
+  <figcaption class="mono">{label} · {caption}</figcaption>
+</figure>
+
+<style>
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 640px;
+  }
+
+  figcaption {
+    margin-top: 16px;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  aside?: string;
+}
+
+const { title, aside } = Astro.props;
+---
+
+<div class="head mono">
+  <h2>{title}</h2>
+  {aside && <span>{aside}</span>}
+</div>
+
+<style>
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2 {
+    font: inherit;
+    color: var(--ink);
+  }
+</style>

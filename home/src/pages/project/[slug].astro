@@ -1,0 +1,346 @@
+---
+import Base from "../../layouts/Base.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Diagram from "../../components/Diagram.astro";
+import Gallery from "../../components/Gallery.astro";
+import Footer from "../../components/Footer.astro";
+import { categories } from "../../data/site";
+import { neighbours, projects } from "../../data/projects";
+import type { Project } from "../../data/types";
+import { bareUrl, pad, rich } from "../../lib/text";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { previous, next } = neighbours(project);
+const position = `${pad(projects.indexOf(project) + 1)} / ${pad(projects.length)}`;
+const kicker = [categories[project.category], project.family].filter(Boolean).join(" · ");
+const meta = [
+  project.status && { label: "Status", value: project.status },
+  project.context && { label: "Context", value: project.context },
+  project.links.source && { label: "Source", value: bareUrl(project.links.source), href: project.links.source },
+  project.links.website && { label: "Website", value: bareUrl(project.links.website), href: project.links.website },
+].filter((item) => !!item);
+const firstFigure = project.diagram ? 2 : 1;
+---
+
+<Base title={project.name} description={project.meta} type="article">
+  <header class="wrap">
+    <div class="top mono">
+      <a href="/">← Martin Koudela</a>
+      <span>{position}</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <p class="mono">{kicker}</p>
+      <h1 class="display" transition:name={`name-${project.slug}`}>{project.name}</h1>
+      <p class="mono sub">
+        {project.descriptor ?? project.tagline}
+        {project.badge && <span class="badge">{project.badge}</span>}
+      </p>
+    </div>
+
+    <div class="lead">
+      <p class="summary" set:html={rich(project.summary)} />
+      {
+        meta.length > 0 && (
+          <dl class="meta mono">
+            {meta.map((item) => (
+              <div>
+                <dt>{item.label}</dt>
+                <dd>
+                  {item.href ? (
+                    <a class="arrow" href={item.href} target="_blank" rel="noopener">
+                      {item.value}
+                    </a>
+                  ) : (
+                    item.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+
+    {project.description && <p class="body">{project.description}</p>}
+
+    {
+      project.diagram && (
+        <section>
+          <SectionHead title="Architecture" />
+          <Diagram nodes={project.diagram.nodes} caption={project.diagram.caption} label="Fig. 1" />
+        </section>
+      )
+    }
+
+    <section>
+      <SectionHead title="Specifications" aside={pad(project.specs.length)} />
+      <dl class="specs">
+        {
+          project.specs.map((spec) => (
+            <div>
+              <dt class="mono">{spec.label}</dt>
+              <dd>
+                {spec.href ? (
+                  <a class="arrow" href={spec.href} target="_blank" rel="noopener">
+                    {spec.value}
+                  </a>
+                ) : (
+                  spec.value
+                )}
+              </dd>
+              {spec.note && <dd class="note">{spec.note}</dd>}
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {
+      project.steps && (
+        <section>
+          <SectionHead title="How it works" aside={pad(project.steps.length)} />
+          <dl class="specs">
+            {project.steps.map((step) => (
+              <div class="step">
+                <dt class="mono">{step.title}</dt>
+                <dd set:html={rich(step.text)} />
+              </div>
+            ))}
+          </dl>
+        </section>
+      )
+    }
+
+    {
+      project.parts && (
+        <section>
+          <SectionHead title="Parts" aside={pad(project.parts.length)} />
+          <dl class="specs">
+            {project.parts.map((part) => (
+              <div class="step">
+                <dt class="mono">{part.label}</dt>
+                <dd>{part.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )
+    }
+
+    {
+      project.figures.length > 0 && (
+        <section>
+          <SectionHead title="Figures" aside={pad(project.figures.length)} />
+          <Gallery figures={project.figures} start={firstFigure} />
+        </section>
+      )
+    }
+
+    <nav class="pager" aria-label="Other projects">
+      <a href={`/project/${previous.slug}`}>
+        <span class="mono">← Previous</span>
+        <b class="display">{previous.name}</b>
+      </a>
+      <a href={`/project/${next.slug}`} class="next">
+        <span class="mono">Next →</span>
+        <b class="display">{next.name}</b>
+      </a>
+    </nav>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: max(22px, env(safe-area-inset-top)) 22px;
+  }
+
+  .top a {
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+
+  .top a:hover {
+    color: var(--accent);
+  }
+
+  .intro {
+    display: grid;
+    gap: 18px;
+    padding-top: clamp(48px, 9vw, 140px);
+  }
+
+  h1 {
+    width: fit-content;
+    font-size: clamp(32px, 9cqw, 140px);
+    line-height: 0.92;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .sub {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+  }
+
+  .badge {
+    padding: 3px 9px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  .lead {
+    display: grid;
+    gap: 32px;
+    padding-top: clamp(32px, 5vw, 64px);
+  }
+
+  .summary {
+    max-width: 34ch;
+    font-size: clamp(21px, 2.5cqw, 34px);
+    font-weight: 450;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+  }
+
+  .summary :global(a),
+  .specs :global(dd a:not(.arrow)) {
+    border-bottom: 1px solid var(--faint);
+    transition: border-color 0.2s;
+  }
+
+  .summary :global(a:hover),
+  .specs :global(dd a:not(.arrow):hover) {
+    border-color: var(--accent);
+  }
+
+  .meta {
+    display: grid;
+    gap: 9px;
+    align-content: end;
+  }
+
+  .meta div {
+    display: grid;
+    grid-template-columns: 9ch 1fr;
+    gap: 16px;
+  }
+
+  .meta dt {
+    color: var(--faint);
+  }
+
+  .meta dd {
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+
+  .body {
+    max-width: 68ch;
+    margin-top: clamp(32px, 4vw, 56px);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--dim);
+  }
+
+  section {
+    padding-top: var(--section);
+  }
+
+  section > :global(.head) {
+    margin-bottom: 28px;
+  }
+
+  .specs {
+    margin-top: -28px;
+  }
+
+  .specs div {
+    display: grid;
+    gap: 6px;
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .specs dt {
+    color: var(--faint);
+  }
+
+  .specs .note,
+  .specs .step dd {
+    color: var(--dim);
+  }
+
+  .pager {
+    display: grid;
+    gap: 28px;
+    margin-top: var(--section);
+    padding-block: clamp(32px, 5vw, 64px) var(--section);
+    border-top: 1px solid var(--line);
+  }
+
+  .pager a {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .pager b {
+    font-size: clamp(24px, 4cqw, 56px);
+    transition: color 0.2s;
+  }
+
+  .pager a:hover b {
+    color: var(--accent);
+  }
+
+  @media (min-width: 760px) {
+    .lead {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 48px;
+    }
+
+    .meta {
+      max-width: 44ch;
+    }
+
+    .specs div {
+      grid-template-columns: minmax(140px, 2fr) 4fr 4fr;
+      gap: 24px;
+      align-items: baseline;
+    }
+
+    .specs .step {
+      grid-template-columns: minmax(140px, 2fr) 8fr;
+    }
+
+    .pager {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pager .next {
+      text-align: right;
+      justify-items: end;
+    }
+  }
+</style>
