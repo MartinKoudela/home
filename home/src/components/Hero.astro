@@ -42,8 +42,8 @@ const lines = site.name.split(" ");
 
 <style>
   .hero {
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: 84vh;
+    min-height: 84svh;
     display: flex;
     flex-direction: column;
   }
@@ -62,6 +62,8 @@ const lines = site.name.split(" ");
     text-transform: uppercase;
     user-select: none;
     -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: pan-y;
   }
 
   .line {
@@ -139,6 +141,11 @@ const lines = site.name.split(" ");
   }
 
   @media (min-width: 760px) {
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
     .under {
       grid-template-columns: 1fr auto;
       align-items: end;

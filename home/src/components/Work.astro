@@ -36,7 +36,7 @@ const rest = projects.filter((project) => !selected.has(project.slug));
                   src={row.source}
                   alt=""
                   widths={[160, 640, 1200]}
-                  sizes="(min-width: 960px) 42vw, 60px"
+                  sizes="(min-width: 960px) 42vw, (min-width: 600px) 46vw, 92vw"
                   loading={i === 0 ? "eager" : "lazy"}
                 />
                 <em class="mono">
@@ -72,14 +72,28 @@ const rest = projects.filter((project) => !selected.has(project.slug));
 </script>
 
 <style>
+  .list {
+    display: grid;
+    gap: 36px 20px;
+    padding-top: 28px;
+  }
+
   .list a {
     position: relative;
     display: grid;
-    grid-template-columns: 3ch 1fr 60px;
-    column-gap: 14px;
-    align-items: center;
-    padding-block: 18px;
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: 3ch 1fr;
+    grid-template-areas:
+      "shot shot"
+      "number text";
+    gap: 16px 12px;
+  }
+
+  .number {
+    grid-area: number;
+  }
+
+  .text {
+    grid-area: text;
   }
 
   .number {
@@ -109,10 +123,12 @@ const rest = projects.filter((project) => !selected.has(project.slug));
   }
 
   .shot {
+    grid-area: shot;
     display: block;
     position: relative;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
+    border: 1px solid var(--line);
   }
 
   .shot img {
@@ -125,6 +141,10 @@ const rest = projects.filter((project) => !selected.has(project.slug));
 
   .shot.phone img {
     object-position: 50% 0;
+  }
+
+  .shot.tall img {
+    object-position: 50% 4%;
   }
 
   .shot em {
@@ -174,14 +194,26 @@ const rest = projects.filter((project) => !selected.has(project.slug));
     }
   }
 
+  @media (min-width: 600px) {
+    .list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   @media (min-width: 960px) {
     .list {
+      display: block;
+      padding-top: 0;
       padding-right: 46cqw;
     }
 
     .list a {
       grid-template-columns: 4ch 1fr;
+      grid-template-areas: "number text";
+      gap: 0 14px;
+      align-items: center;
       padding-block: clamp(16px, 1.9cqw, 28px);
+      border-bottom: 1px solid var(--line);
       transition: opacity 0.25s;
     }
 
@@ -207,6 +239,7 @@ const rest = projects.filter((project) => !selected.has(project.slug));
       width: 42cqw;
       aspect-ratio: auto;
       overflow: visible;
+      border: 0;
       opacity: 0;
       visibility: hidden;
       transform: translateY(10px);
