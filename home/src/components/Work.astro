@@ -3,12 +3,13 @@ import { Image } from "astro:assets";
 import SectionHead from "./SectionHead.astro";
 import { featured } from "../data/site";
 import { projects } from "../data/projects";
-import { projectImage } from "../lib/images";
+import { isTall, projectImage } from "../lib/images";
 import { pad } from "../lib/text";
 
 const rows = featured.map((item, i) => ({
   ...item,
   number: pad(i + 1),
+  source: projectImage(item.image),
   project: projects.find((project) => project.slug === item.slug)!,
 }));
 const selected = new Set(featured.map((item) => item.slug));
@@ -30,9 +31,9 @@ const rest = projects.filter((project) => !selected.has(project.slug));
                 </b>
                 <span class="tagline mono">{row.project.tagline}</span>
               </span>
-              <span class:list={["shot", { phone: row.phone }]}>
+              <span class:list={["shot", { phone: row.phone, tall: !row.phone && isTall(row.source) }]}>
                 <Image
-                  src={projectImage(row.image)}
+                  src={row.source}
                   alt=""
                   widths={[160, 640, 1200]}
                   sizes="(min-width: 960px) 42vw, 60px"
@@ -227,6 +228,10 @@ const rest = projects.filter((project) => !selected.has(project.slug));
 
     .shot.phone {
       width: 30cqw;
+    }
+
+    .shot.tall {
+      width: 26cqw;
     }
 
     .shot.phone img {

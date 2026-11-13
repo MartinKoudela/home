@@ -11,3 +11,7 @@ export function projectImage(name: string): ImageMetadata {
 export function isPhone(image: ImageMetadata): boolean {
   return image.height > image.width * 1.8;
 }
+
+export function isTall(image: ImageMetadata): boolean {
+  return image.height > image.width;
+}

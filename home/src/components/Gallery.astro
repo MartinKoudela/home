@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { Figure } from "../data/types";
-import { isPhone, projectImage } from "../lib/images";
+import { isPhone, isTall, projectImage } from "../lib/images";
 
 interface Props {
   figures: Figure[];
@@ -11,10 +11,11 @@ interface Props {
 const { figures, start } = Astro.props;
 const items = figures.map((figure) => ({ ...figure, source: projectImage(figure.image) }));
 const phones = items.every((item) => isPhone(item.source));
-const layout = phones ? "phones" : items.length === 1 ? "single" : "pairs";
+const layout = phones ? "phones" : items.length === 1 ? (isTall(items[0].source) ? "tall" : "single") : "pairs";
 const sizes = {
   phones: "(min-width: 960px) 22vw, 45vw",
   single: "(min-width: 1200px) 1100px, 92vw",
+  tall: "(min-width: 520px) 440px, 92vw",
   pairs: "(min-width: 760px) 46vw, 92vw",
 }[layout];
 ---
@@ -45,6 +46,10 @@ const sizes = {
 
   .single {
     max-width: 1100px;
+  }
+
+  .tall {
+    max-width: 440px;
   }
 
   img {
